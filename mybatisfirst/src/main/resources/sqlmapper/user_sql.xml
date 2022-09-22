@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisfirst.dao.UserDao">
+
+        <select id="allUsers" resultType="com.example.mybatisfirst.dto.User">
+            Select id,name,email From users
+        </select>
+
+<!--        입력 건수 리턴-->
+        <insert id="createUser">
+            Insert into users values(#{id}, #{name},#{email})
+        </insert>
+
+        <insert id="createHobby" parameterType="java.util.List">
+            Insert into hobby values
+            <foreach collection="hobbies" item="element" index="index" separator=",">
+                (#{element.id}, #{element.kind}, #{element.remark}, #{element.uid})
+            </foreach>
+        </insert>
+
+        <insert id="createNation">
+            Insert into nation(id,nation,city) values(#{id},#{nation}, #{city})
+        </insert>
+
+
+
+<!--    <insert id="insertTest" useGeneratedKeys="true" keyProperty="id">-->
+<!--        insert into test_table (-->
+<!--        value-->
+<!--        ) values (-->
+<!--        #{value}-->
+<!--        )-->
+<!--    </insert>-->
+
+<!--    <insert id="studentInsert">-->
+<!--        INSERT INTO STUDENT VALUES(student_seq.nextval, '김말똥','01022223333','mal@naver.com','서울시 양천구',default)-->
+<!--    </insert>-->
+
+
+<!--    <insert id="studentInsertValue" parameterType="student">-->
+<!--        INSERT INTO STUDENT VALUES(student_seq.nextval, #{studentName},#{studentTel},#{studentEmail},#{studentAddr},default)-->
+<!--    </insert>-->
+
+
+</mapper>

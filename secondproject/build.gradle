@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+//	id 'application'
+}
+
+//application {
+//	mainClass.set('com.example.firstproject')
+//}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//1.Lombok 추가
+	//2.plugIn 추가(Help->Find Action ->'plugIns' 입력 -> MarketPlace 에서->lombok 검색
+	//3.Settings->Build,Execution,Deployment->Compiler-> Annotation Processor->'enable annotationProcessing" 체크
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//RequestBody(request mapping을 통해 Json으로 받은 RequestBody를 rest Api 프로젝트의 dto객체 형식으로 변경,jackson라이브러리)
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.4'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.4'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//DB연동(MySQL)
+	implementation 'mysql:mysql-connector-java'
+
+//	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//1.Lombok 추가
+	//2.plugIn 추가(Help->Find Action ->'plugIns' 입력 -> MarketPlace 에서->lombok 검색
+	//3.Settings->Build,Execution,Deployment->Compiler-> Annotation Processor->'enable annotationProcessing" 체크
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//RequestBody(request mapping을 통해 Json으로 받은 RequestBody를 rest Api 프로젝트의 dto객체 형식으로 변경,jackson라이브러리)
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.4'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.4'
+	//File download 시 파일명 난수 적용 목적(RandomStringUtils)
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
